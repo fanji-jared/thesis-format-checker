@@ -55,9 +55,8 @@ htmlcov/
 .DS_Store
 Thumbs.db
 
-# Document
-.document/*.docx
-!.document/最终版完整论文格式规则.md
+# Document (完全忽略.document目录)
+.document/
 
 # Trae
 .trae/
