@@ -1,0 +1,880 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "论文格式检测配置文件Schema",
+  "description": "定义论文格式检测工具的配置文件结构",
+  "type": "object",
+  "required": ["meta", "page_settings", "toc_settings", "chapter_titles", "body_text", "figures", "tables", "formulas", "references", "appendix"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "配置文件元信息",
+      "required": ["name", "version", "description", "created_at", "updated_at"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "配置文件名称"
+        },
+        "version": {
+          "type": "string",
+          "description": "配置文件版本号",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "description": {
+          "type": "string",
+          "description": "配置文件描述"
+        },
+        "created_at": {
+          "type": "string",
+          "description": "创建时间",
+          "format": "date-time"
+        },
+        "updated_at": {
+          "type": "string",
+          "description": "更新时间",
+          "format": "date-time"
+        },
+        "author": {
+          "type": "string",
+          "description": "作者"
+        }
+      }
+    },
+    "page_settings": {
+      "type": "object",
+      "description": "页面基础设置",
+      "required": ["margins", "binding", "header_footer", "font_rules"],
+      "properties": {
+        "margins": {
+          "type": "object",
+          "description": "页边距设置",
+          "required": ["top", "bottom", "left", "right"],
+          "properties": {
+            "top": {
+              "type": "number",
+              "description": "上边距(cm)",
+              "minimum": 0
+            },
+            "bottom": {
+              "type": "number",
+              "description": "下边距(cm)",
+              "minimum": 0
+            },
+            "left": {
+              "type": "number",
+              "description": "左边距(cm)",
+              "minimum": 0
+            },
+            "right": {
+              "type": "number",
+              "description": "右边距(cm)",
+              "minimum": 0
+            }
+          }
+        },
+        "binding": {
+          "type": "object",
+          "description": "装订线设置",
+          "required": ["position", "width"],
+          "properties": {
+            "position": {
+              "type": "string",
+              "description": "装订线位置",
+              "enum": ["left", "right", "top", "bottom"]
+            },
+            "width": {
+              "type": "number",
+              "description": "装订线宽度(cm)",
+              "minimum": 0
+            }
+          }
+        },
+        "header_footer": {
+          "type": "object",
+          "description": "页眉页脚设置",
+          "required": ["header_margin", "footer_margin"],
+          "properties": {
+            "header_margin": {
+              "type": "number",
+              "description": "页眉边距(cm)",
+              "minimum": 0
+            },
+            "footer_margin": {
+              "type": "number",
+              "description": "页脚边距(cm)",
+              "minimum": 0
+            }
+          }
+        },
+        "font_rules": {
+          "type": "object",
+          "description": "通用字体规则",
+          "required": ["english_font"],
+          "properties": {
+            "english_font": {
+              "type": "string",
+              "description": "英文/数字字体"
+            }
+          }
+        }
+      }
+    },
+    "toc_settings": {
+      "type": "object",
+      "description": "目录格式设置",
+      "required": ["title", "level1", "level2", "level3", "auto_generated", "display_levels"],
+      "properties": {
+        "title": {
+          "type": "object",
+          "description": "目录标题设置",
+          "required": ["text", "font", "size", "alignment"],
+          "properties": {
+            "text": {
+              "type": "string",
+              "description": "目录标题文字"
+            },
+            "font": {
+              "type": "string",
+              "description": "字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号(中文字号名称)"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            }
+          }
+        },
+        "level1": {
+          "type": "object",
+          "description": "目录一级标题设置",
+          "required": ["font", "size", "alignment", "line_spacing", "space_before", "space_after"],
+          "properties": {
+            "font": {
+              "type": "string",
+              "description": "字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_before": {
+              "type": "number",
+              "description": "段前间距(行)"
+            },
+            "space_after": {
+              "type": "number",
+              "description": "段后间距(行)"
+            }
+          }
+        },
+        "level2": {
+          "type": "object",
+          "description": "目录二级标题设置",
+          "required": ["font", "size", "alignment", "line_spacing", "space_before", "space_after", "left_indent"],
+          "properties": {
+            "font": {
+              "type": "string",
+              "description": "字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_before": {
+              "type": "number",
+              "description": "段前间距(行)"
+            },
+            "space_after": {
+              "type": "number",
+              "description": "段后间距(行)"
+            },
+            "left_indent": {
+              "type": "number",
+              "description": "左缩进(字符)"
+            }
+          }
+        },
+        "level3": {
+          "type": "object",
+          "description": "目录三级标题设置",
+          "required": ["font", "size", "alignment", "line_spacing", "space_before", "space_after"],
+          "properties": {
+            "font": {
+              "type": "string",
+              "description": "字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_before": {
+              "type": "number",
+              "description": "段前间距(行)"
+            },
+            "space_after": {
+              "type": "number",
+              "description": "段后间距(行)"
+            }
+          }
+        },
+        "auto_generated": {
+          "type": "boolean",
+          "description": "是否必须使用Word自动生成目录"
+        },
+        "display_levels": {
+          "type": "integer",
+          "description": "目录显示级别数",
+          "minimum": 1,
+          "maximum": 9
+        }
+      }
+    },
+    "chapter_titles": {
+      "type": "object",
+      "description": "正文章节标题设置",
+      "required": ["level1", "level2", "level3"],
+      "properties": {
+        "level1": {
+          "type": "object",
+          "description": "一级标题(章标题)设置",
+          "required": ["font", "size", "alignment", "bold", "line_spacing", "space_before", "space_after", "outline_level", "page_break_before"],
+          "properties": {
+            "font": {
+              "type": "string",
+              "description": "字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "bold": {
+              "type": "boolean",
+              "description": "是否加粗"
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_before": {
+              "type": "number",
+              "description": "段前间距(行)"
+            },
+            "space_after": {
+              "type": "number",
+              "description": "段后间距(行)"
+            },
+            "outline_level": {
+              "type": "integer",
+              "description": "大纲级别",
+              "minimum": 1,
+              "maximum": 9
+            },
+            "page_break_before": {
+              "type": "boolean",
+              "description": "是否另起一页"
+            },
+            "numbering_format": {
+              "type": "string",
+              "description": "编号格式，如'第X章'"
+            },
+            "space_between_number_title": {
+              "type": "number",
+              "description": "序号与标题之间的空格数(字符)"
+            }
+          }
+        },
+        "level2": {
+          "type": "object",
+          "description": "二级标题(节标题)设置",
+          "required": ["font", "size", "alignment", "bold", "line_spacing", "space_before", "space_after", "outline_level"],
+          "properties": {
+            "font": {
+              "type": "string",
+              "description": "字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "bold": {
+              "type": "boolean",
+              "description": "是否加粗"
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_before": {
+              "type": "number",
+              "description": "段前间距(行)"
+            },
+            "space_after": {
+              "type": "number",
+              "description": "段后间距(行)"
+            },
+            "outline_level": {
+              "type": "integer",
+              "description": "大纲级别",
+              "minimum": 1,
+              "maximum": 9
+            },
+            "numbering_format": {
+              "type": "string",
+              "description": "编号格式，如'X.X'"
+            }
+          }
+        },
+        "level3": {
+          "type": "object",
+          "description": "三级标题(小节标题)设置",
+          "required": ["font", "size", "alignment", "bold", "line_spacing", "space_before", "space_after", "outline_level"],
+          "properties": {
+            "font": {
+              "type": "string",
+              "description": "字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "bold": {
+              "type": "boolean",
+              "description": "是否加粗"
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_before": {
+              "type": "number",
+              "description": "段前间距(行)"
+            },
+            "space_after": {
+              "type": "number",
+              "description": "段后间距(行)"
+            },
+            "outline_level": {
+              "type": "integer",
+              "description": "大纲级别",
+              "minimum": 1,
+              "maximum": 9
+            },
+            "numbering_format": {
+              "type": "string",
+              "description": "编号格式，如'X.X.X'"
+            }
+          }
+        }
+      }
+    },
+    "body_text": {
+      "type": "object",
+      "description": "正文内容格式设置",
+      "required": ["font", "size", "alignment", "line_spacing", "space_before", "space_after", "first_line_indent"],
+      "properties": {
+        "font": {
+          "type": "string",
+          "description": "中文字体"
+        },
+        "english_font": {
+          "type": "string",
+          "description": "英文/数字字体"
+        },
+        "size": {
+          "type": "string",
+          "description": "字号"
+        },
+        "alignment": {
+          "type": "string",
+          "description": "对齐方式",
+          "enum": ["left", "center", "right", "justify"]
+        },
+        "line_spacing": {
+          "type": "number",
+          "description": "行距倍数"
+        },
+        "space_before": {
+          "type": "number",
+          "description": "段前间距(行)"
+        },
+        "space_after": {
+          "type": "number",
+          "description": "段后间距(行)"
+        },
+        "first_line_indent": {
+          "type": "number",
+          "description": "首行缩进(字符)"
+        }
+      }
+    },
+    "figures": {
+      "type": "object",
+      "description": "图片与图名格式设置",
+      "required": ["numbering", "caption", "alignment", "line_spacing", "space_before", "space_after"],
+      "properties": {
+        "numbering": {
+          "type": "object",
+          "description": "图片编号设置",
+          "required": ["format", "by_chapter"],
+          "properties": {
+            "format": {
+              "type": "string",
+              "description": "编号格式，如'图X-X'"
+            },
+            "by_chapter": {
+              "type": "boolean",
+              "description": "是否按章编号"
+            }
+          }
+        },
+        "caption": {
+          "type": "object",
+          "description": "图题(图名)设置",
+          "required": ["position", "font", "size", "bold", "alignment", "line_spacing", "space_after_pt"],
+          "properties": {
+            "position": {
+              "type": "string",
+              "description": "图题位置",
+              "enum": ["above", "below"]
+            },
+            "font": {
+              "type": "string",
+              "description": "中文字体"
+            },
+            "english_font": {
+              "type": "string",
+              "description": "英文/数字字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "bold": {
+              "type": "boolean",
+              "description": "是否加粗"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_after_pt": {
+              "type": "number",
+              "description": "段后间距(磅)"
+            }
+          }
+        },
+        "alignment": {
+          "type": "string",
+          "description": "图片对齐方式",
+          "enum": ["left", "center", "right", "justify"]
+        },
+        "line_spacing": {
+          "type": "number",
+          "description": "图片段落行距倍数"
+        },
+        "space_before": {
+          "type": "number",
+          "description": "图片段前间距(行)"
+        },
+        "space_after": {
+          "type": "number",
+          "description": "图片段后间距(行)"
+        }
+      }
+    },
+    "tables": {
+      "type": "object",
+      "description": "表格与表名格式设置",
+      "required": ["numbering", "caption", "three_line_table", "content", "continuation"],
+      "properties": {
+        "numbering": {
+          "type": "object",
+          "description": "表格编号设置",
+          "required": ["format", "by_chapter"],
+          "properties": {
+            "format": {
+              "type": "string",
+              "description": "编号格式，如'表X-X'"
+            },
+            "by_chapter": {
+              "type": "boolean",
+              "description": "是否按章编号"
+            }
+          }
+        },
+        "caption": {
+          "type": "object",
+          "description": "表题(表名)设置",
+          "required": ["position", "font", "size", "bold", "alignment", "line_spacing", "space_before_pt"],
+          "properties": {
+            "position": {
+              "type": "string",
+              "description": "表题位置",
+              "enum": ["above", "below"]
+            },
+            "font": {
+              "type": "string",
+              "description": "中文字体"
+            },
+            "english_font": {
+              "type": "string",
+              "description": "英文/数字字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "bold": {
+              "type": "boolean",
+              "description": "是否加粗"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_before_pt": {
+              "type": "number",
+              "description": "段前间距(磅)"
+            }
+          }
+        },
+        "three_line_table": {
+          "type": "object",
+          "description": "三线表设置",
+          "required": ["enabled", "no_vertical_borders", "no_left_right_borders"],
+          "properties": {
+            "enabled": {
+              "type": "boolean",
+              "description": "是否必须使用三线表"
+            },
+            "no_vertical_borders": {
+              "type": "boolean",
+              "description": "不得有垂直边线"
+            },
+            "no_left_right_borders": {
+              "type": "boolean",
+              "description": "不得有左右边线"
+            }
+          }
+        },
+        "content": {
+          "type": "object",
+          "description": "表格内容设置",
+          "required": ["font", "size", "alignment", "line_spacing", "header_bold"],
+          "properties": {
+            "font": {
+              "type": "string",
+              "description": "中文字体"
+            },
+            "english_font": {
+              "type": "string",
+              "description": "英文/数字字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "header_bold": {
+              "type": "boolean",
+              "description": "表头第一行是否加粗"
+            }
+          }
+        },
+        "continuation": {
+          "type": "object",
+          "description": "续表设置",
+          "required": ["format", "font", "size", "alignment", "line_spacing_pt", "space_before", "space_after"],
+          "properties": {
+            "format": {
+              "type": "string",
+              "description": "续表标注格式，如'续表X-X'"
+            },
+            "font": {
+              "type": "string",
+              "description": "字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "line_spacing_pt": {
+              "type": "number",
+              "description": "行距固定值(磅)"
+            },
+            "space_before": {
+              "type": "number",
+              "description": "段前间距(行)"
+            },
+            "space_after": {
+              "type": "number",
+              "description": "段后间距(行)"
+            }
+          }
+        }
+      }
+    },
+    "formulas": {
+      "type": "object",
+      "description": "公式格式设置",
+      "required": ["numbering", "alignment", "formula_centered", "number_right_aligned", "use_equation_editor"],
+      "properties": {
+        "numbering": {
+          "type": "object",
+          "description": "公式编号设置",
+          "required": ["format", "by_chapter"],
+          "properties": {
+            "format": {
+              "type": "string",
+              "description": "编号格式，如'(X-X)'"
+            },
+            "by_chapter": {
+              "type": "boolean",
+              "description": "是否按章编号"
+            }
+          }
+        },
+        "alignment": {
+          "type": "string",
+          "description": "公式整体对齐方式",
+          "enum": ["left", "center", "right", "justify"]
+        },
+        "formula_centered": {
+          "type": "boolean",
+          "description": "公式内容是否居中"
+        },
+        "number_right_aligned": {
+          "type": "boolean",
+          "description": "编号是否右对齐"
+        },
+        "use_equation_editor": {
+          "type": "boolean",
+          "description": "是否建议使用公式编辑器"
+        },
+        "separate_line": {
+          "type": "boolean",
+          "description": "公式是否单独另起一行"
+        }
+      }
+    },
+    "references": {
+      "type": "object",
+      "description": "参考文献格式设置",
+      "required": ["in_text_citation", "list_format", "cross_reference_required"],
+      "properties": {
+        "in_text_citation": {
+          "type": "object",
+          "description": "文中引用设置",
+          "required": ["format", "superscript", "brackets", "position"],
+          "properties": {
+            "format": {
+              "type": "string",
+              "description": "引用格式，如'[X]'"
+            },
+            "superscript": {
+              "type": "boolean",
+              "description": "是否为上角标"
+            },
+            "brackets": {
+              "type": "boolean",
+              "description": "是否在方括号内"
+            },
+            "position": {
+              "type": "string",
+              "description": "引用位置",
+              "enum": ["after_sentence", "before_sentence", "end_of_paragraph"]
+            }
+          }
+        },
+        "list_format": {
+          "type": "object",
+          "description": "文末参考文献列表设置",
+          "required": ["standard", "font", "size", "alignment", "line_spacing", "space_before", "space_after", "hanging_indent"],
+          "properties": {
+            "standard": {
+              "type": "string",
+              "description": "著录标准，如'GB/T 7714'"
+            },
+            "font": {
+              "type": "string",
+              "description": "中文字体"
+            },
+            "english_font": {
+              "type": "string",
+              "description": "英文/数字字体"
+            },
+            "size": {
+              "type": "string",
+              "description": "字号"
+            },
+            "alignment": {
+              "type": "string",
+              "description": "对齐方式",
+              "enum": ["left", "center", "right", "justify"]
+            },
+            "line_spacing": {
+              "type": "number",
+              "description": "行距倍数"
+            },
+            "space_before": {
+              "type": "number",
+              "description": "段前间距(行)"
+            },
+            "space_after": {
+              "type": "number",
+              "description": "段后间距(行)"
+            },
+            "hanging_indent": {
+              "type": "number",
+              "description": "悬挂缩进(字符)"
+            },
+            "document_types": {
+              "type": "array",
+              "description": "支持的文献类型",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "cross_reference_required": {
+          "type": "boolean",
+          "description": "是否要求所有列入列表的文献必须在正文内进行交叉引用"
+        }
+      }
+    },
+    "appendix": {
+      "type": "object",
+      "description": "附录格式设置",
+      "required": ["font", "size", "alignment", "line_spacing", "space_before", "space_after", "first_line_indent"],
+      "properties": {
+        "font": {
+          "type": "string",
+          "description": "中文字体"
+        },
+        "english_font": {
+          "type": "string",
+          "description": "英文/数字字体"
+        },
+        "size": {
+          "type": "string",
+          "description": "字号"
+        },
+        "alignment": {
+          "type": "string",
+          "description": "对齐方式",
+          "enum": ["left", "center", "right", "justify"]
+        },
+        "line_spacing": {
+          "type": "number",
+          "description": "行距倍数"
+        },
+        "space_before": {
+          "type": "number",
+          "description": "段前间距(行)"
+        },
+        "space_after": {
+          "type": "number",
+          "description": "段后间距(行)"
+        },
+        "first_line_indent": {
+          "type": "number",
+          "description": "首行缩进(字符)"
+        }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "description": "检测合格阈值设置",
+      "required": ["plagiarism_rate", "aigc_rate", "format_score"],
+      "properties": {
+        "plagiarism_rate": {
+          "type": "number",
+          "description": "重复率检测阈值(百分比)",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "aigc_rate": {
+          "type": "number",
+          "description": "AIGC内容检测阈值(百分比)",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "format_score": {
+          "type": "number",
+          "description": "格式检测得分阈值(分)",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  }
+}

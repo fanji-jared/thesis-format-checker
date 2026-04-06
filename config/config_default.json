@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "name": "默认论文格式配置",
+    "version": "1.0.0",
+    "description": "基于《最终版完整论文格式规则》的默认配置文件，包含页面设置、目录、章节标题、正文、图片、表格、公式、参考文献等完整检测规则",
+    "created_at": "2026-04-06T00:00:00",
+    "updated_at": "2026-04-06T00:00:00",
+    "author": "系统默认"
+  },
+  "page_settings": {
+    "margins": {
+      "top": 2.0,
+      "bottom": 1.5,
+      "left": 2.0,
+      "right": 2.0
+    },
+    "binding": {
+      "position": "left",
+      "width": 1.0
+    },
+    "header_footer": {
+      "header_margin": 1.5,
+      "footer_margin": 1.0
+    },
+    "font_rules": {
+      "english_font": "Times New Roman"
+    }
+  },
+  "toc_settings": {
+    "title": {
+      "text": "目录",
+      "font": "黑体",
+      "size": "三号",
+      "alignment": "center"
+    },
+    "level1": {
+      "font": "黑体",
+      "size": "小四",
+      "alignment": "justify",
+      "line_spacing": 1.5,
+      "space_before": 0.25,
+      "space_after": 0.25
+    },
+    "level2": {
+      "font": "宋体",
+      "size": "小四",
+      "alignment": "justify",
+      "line_spacing": 1.5,
+      "space_before": 0,
+      "space_after": 0,
+      "left_indent": 2
+    },
+    "level3": {
+      "font": "宋体",
+      "size": "小四",
+      "alignment": "justify",
+      "line_spacing": 1.5,
+      "space_before": 0,
+      "space_after": 0
+    },
+    "auto_generated": true,
+    "display_levels": 3
+  },
+  "chapter_titles": {
+    "level1": {
+      "font": "黑体",
+      "size": "三号",
+      "alignment": "center",
+      "bold": false,
+      "line_spacing": 1.5,
+      "space_before": 1,
+      "space_after": 1,
+      "outline_level": 1,
+      "page_break_before": true,
+      "numbering_format": "第X章",
+      "space_between_number_title": 1
+    },
+    "level2": {
+      "font": "黑体",
+      "size": "四号",
+      "alignment": "left",
+      "bold": true,
+      "line_spacing": 1.5,
+      "space_before": 0.5,
+      "space_after": 0.5,
+      "outline_level": 2,
+      "numbering_format": "X.X"
+    },
+    "level3": {
+      "font": "黑体",
+      "size": "小四",
+      "alignment": "left",
+      "bold": true,
+      "line_spacing": 1.5,
+      "space_before": 0.5,
+      "space_after": 0.5,
+      "outline_level": 3,
+      "numbering_format": "X.X.X"
+    }
+  },
+  "body_text": {
+    "font": "宋体",
+    "english_font": "Times New Roman",
+    "size": "小四",
+    "alignment": "justify",
+    "line_spacing": 1.5,
+    "space_before": 0,
+    "space_after": 0,
+    "first_line_indent": 2
+  },
+  "figures": {
+    "numbering": {
+      "format": "图X-X",
+      "by_chapter": true
+    },
+    "caption": {
+      "position": "below",
+      "font": "宋体",
+      "english_font": "Times New Roman",
+      "size": "五号",
+      "bold": true,
+      "alignment": "center",
+      "line_spacing": 1.5,
+      "space_after_pt": 6
+    },
+    "alignment": "center",
+    "line_spacing": 1.5,
+    "space_before": 0,
+    "space_after": 0
+  },
+  "tables": {
+    "numbering": {
+      "format": "表X-X",
+      "by_chapter": true
+    },
+    "caption": {
+      "position": "above",
+      "font": "宋体",
+      "english_font": "Times New Roman",
+      "size": "五号",
+      "bold": true,
+      "alignment": "center",
+      "line_spacing": 1.5,
+      "space_before_pt": 6
+    },
+    "three_line_table": {
+      "enabled": true,
+      "no_vertical_borders": true,
+      "no_left_right_borders": true
+    },
+    "content": {
+      "font": "宋体",
+      "english_font": "Times New Roman",
+      "size": "五号",
+      "alignment": "center",
+      "line_spacing": 1.5,
+      "header_bold": true
+    },
+    "continuation": {
+      "format": "续表X-X",
+      "font": "宋体",
+      "size": "五号",
+      "alignment": "right",
+      "line_spacing_pt": 22,
+      "space_before": 0,
+      "space_after": 0
+    }
+  },
+  "formulas": {
+    "numbering": {
+      "format": "(X-X)",
+      "by_chapter": true
+    },
+    "alignment": "center",
+    "formula_centered": true,
+    "number_right_aligned": true,
+    "use_equation_editor": true,
+    "separate_line": true
+  },
+  "references": {
+    "in_text_citation": {
+      "format": "[X]",
+      "superscript": true,
+      "brackets": true,
+      "position": "after_sentence"
+    },
+    "list_format": {
+      "standard": "GB/T 7714",
+      "font": "宋体",
+      "english_font": "Times New Roman",
+      "size": "五号",
+      "alignment": "justify",
+      "line_spacing": 1.5,
+      "space_before": 0,
+      "space_after": 0,
+      "hanging_indent": 2,
+      "document_types": ["[J]", "[M]", "[D]", "[P]", "[S]", "[R]", "[N]", "[EB/OL]"]
+    },
+    "cross_reference_required": true
+  },
+  "appendix": {
+    "font": "宋体",
+    "english_font": "Times New Roman",
+    "size": "小四",
+    "alignment": "left",
+    "line_spacing": 1.5,
+    "space_before": 0,
+    "space_after": 0,
+    "first_line_indent": 2
+  },
+  "thresholds": {
+    "plagiarism_rate": 30,
+    "aigc_rate": 40,
+    "format_score": 45
+  }
+}
